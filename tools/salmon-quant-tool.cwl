@@ -4,12 +4,12 @@ id: salmon-quant-tool
 label: salmon-quant-tool
 cwlVersion: v1.0
 
-requirements:
-  - class: DockerRequirement
+hints:
+  DockerRequirement:
     dockerPull: combinelab/salmon
+    
+requirements:
   - class: InlineJavascriptRequirement
-#  - class: InitialWorkDirRequirement
-#    listing: $(inputs.output)
 
 baseCommand: [salmon, quant, -l, A, --validateMappings, --gcBias, --seqBias]
 
