@@ -6,7 +6,7 @@ cwlVersion: v1.0
 
 hints:
   DockerRequirement:
-    dockerPull:combinelab/salmon
+    dockerPull: combinelab/salmon
 
 baseCommand: [salmon, index]
 
