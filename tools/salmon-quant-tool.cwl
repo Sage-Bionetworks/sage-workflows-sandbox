@@ -4,14 +4,14 @@ id: salmon-quant-tool
 label: salmon-quant-tool
 cwlVersion: v1.0
 
+baseCommand: [salmon, quant, -l, A, --validateMappings, --gcBias, --seqBias]
+
 hints:
   DockerRequirement:
     dockerPull: combinelab/salmon
     
 requirements:
   - class: InlineJavascriptRequirement
-
-baseCommand: [salmon, quant, -l, A, --validateMappings, --gcBias, --seqBias]
 
 inputs:
   mates1:
