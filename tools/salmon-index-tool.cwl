@@ -5,7 +5,7 @@ label: salmon-index-tool
 cwlVersion: v1.0
 
 requirements:
-  DockerRequirement
+  - class: DockerRequirement
     dockerPull: combinelab/salmon
 
 baseCommand: [salmon, index]
