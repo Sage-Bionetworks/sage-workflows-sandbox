@@ -17,6 +17,7 @@
 
 # -- Project information -----------------------------------------------------
 
+master_doc = 'index'
 project = 'Sage Workflows User Guide'
 copyright = '2019, Sage Workflows WG'
 author = 'Sage Workflows WG'
