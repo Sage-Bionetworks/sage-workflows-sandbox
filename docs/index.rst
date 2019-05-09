@@ -10,51 +10,68 @@ Numerous groups are developing technologies and best practices for describing an
 
 Workflow execution should support multiple tasks and domains at Sage, including challenge infrastructure, data processing pipelines, computationally intensive analyses, and benchmarking for scientific communities. The WG will support teams by developing scalable, documented workflows, as well as the systems and guidance to author, test, execute, and share these workflows for diverse applications. Our goal is to prototype and demonstrate solutions, and define requirements and specifications for the Synapse platform team. Members of this team will participate in and monitor external groups and communities — to stay aware of and informed on best practices and emerging standards. Any systems we devise and implement should conform to and enable FAIR principles; in particular, tight integration with data provenance in Synapse should be a long term goal of any workflow-related developments.
 
-.. toctree::
-   :maxdepth: 2
-   :caption: Overview:
-
-  overview/rationale.rst
-  overview/workflows-101.rst
-  overview/workflow-standards.rst
-  overview/workflow-engines.rst
 
 .. toctree::
    :maxdepth: 2
-   :caption: CWL Usage:
+   :hidden:
+   :caption: Overview
 
-  cwl_usage/cwl_getting-started.rst
-  cwl_usage/cwl_input-output.rst
-  cwl_usage/cwl_using-containers.rst
+   overview/rationale
+   overview/workflows-101
+   overview/workflow-standards
+   overview/workflow-engines
 
-.. toctree::
-   :maxdepth: 2
-   :caption: CWL Examples:
-
-  cwl_examples/cwl_javascript-and-cwl.rst
-  cwl_examples/cwl_scattering-inputs.rst
-  cwl_examples/cwl_staging-folders.rst
+.. _cwl-usage:
 
 .. toctree::
    :maxdepth: 2
-   :caption: Workflow Infrastructure:
+   :hidden:
+   :caption: CWL Usage
 
-  infrastructure/cloud-providers.rst
+   cwl_usage/cwl_getting-started
+   cwl_usage/cwl_input-output
+   cwl_usage/cwl_using-containers
 
-.. toctree::
-   :maxdepth: 2
-   :caption: Sharing & Discovery:
-
-  sharing_discovery/sharing-workflows.rst
-  sharing_discovery/workflow-metadata.rst
-  sharing_discoverycwl-and-linked-data.rst
+.. _cwl-examples:
 
 .. toctree::
    :maxdepth: 2
-   :caption: Synapse & Workflows:
+   :hidden:
+   :caption: CWL Examples
 
-  synapse_workflows/synapse-cwl-tools.rst
-  synapse_workflows/synapse-workflow-hook.rst
+   cwl_examples/cwl_javascript-and-cwl
+   cwl_examples/cwl_scattering-inputs
+   cwl_examples/cwl_staging-folders
+
+.. _infrastructure:
+
+.. toctree::
+   :maxdepth: 2
+   :hidden:
+   :caption: Workflow Infrastructure
+
+   infrastructure/cloud-providers
+
+.. _sharing-discovery:
+
+.. toctree::
+   :maxdepth: 2
+   :hidden:
+   :caption: Sharing & Discovery
+
+   sharing_discovery/sharing-workflows
+   sharing_discovery/workflow-metadata
+   sharing_discovery/cwl-and-linked-data
+
+.. _synapse-workflows:
+
+.. toctree::
+   :maxdepth: 2
+   :hidden:
+   :caption: Synapse & Workflows
+
+   synapse_workflows/synapse-cwl-tools
+   synapse_workflows/synapse-workflow-hook
 
 
 Indices and tables

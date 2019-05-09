@@ -1,0 +1,17 @@
+*.db
+*.rdb
+*.egg-info
+*.log
+*.pyc
+*.swp
+.DS_Store
+.cache
+.coverage
+.coverage.*
+.idea
+.vagrant
+.vscode
+.tox
+.env
+_build
+
