@@ -1,8 +1,8 @@
-Overview
-========
+Rationale
+=========
 
 .. meta::
-    :description lang=en: Overview of Sage's workflows documentation.
+    :description lang=en: Our philosophy on promoting standardized workflows.
 
 Why use workflows?
 ------------------

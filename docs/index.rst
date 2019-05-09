@@ -12,9 +12,49 @@ Workflow execution should support multiple tasks and domains at Sage, including 
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+   :caption: Overview:
 
-  overview.rst
+  overview/rationale.rst
+  overview/workflows-101.rst
+  overview/workflow-standards.rst
+  overview/workflow-engines.rst
+
+.. toctree::
+   :maxdepth: 2
+   :caption: CWL Usage:
+
+  cwl_usage/cwl_getting-started.rst
+  cwl_usage/cwl_input-output.rst
+  cwl_usage/cwl_using-containers.rst
+
+.. toctree::
+   :maxdepth: 2
+   :caption: CWL Examples:
+
+  cwl_examples/cwl_javascript-and-cwl.rst
+  cwl_examples/cwl_scattering-inputs.rst
+  cwl_examples/cwl_staging-folders.rst
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Workflow Infrastructure:
+
+  infrastructure/cloud-providers.rst
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Sharing & Discovery:
+
+  sharing_discovery/sharing-workflows.rst
+  sharing_discovery/workflow-metadata.rst
+  sharing_discoverycwl-and-linked-data.rst
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Synapse & Workflows:
+
+  synapse_workflows/synapse-cwl-tools.rst
+  synapse_workflows/synapse-workflow-hook.rst
 
 
 Indices and tables
