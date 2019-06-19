@@ -18,35 +18,37 @@ CWL stages all input files and directories in a random read-only temp directory 
 # Part 1: Input files in the working directory
 
 Here is a python script that can use the sync to synapse function:
-```
-import synapseclient
-import argparse
-import synapseutils
 
-if __name__ == '__main__':
+.. code-block:: python
 
-    parser = argparse.ArgumentParser("Stores files in Synapse")
+	import synapseclient
+	import argparse
+	import synapseutils
 
-    parser.add_argument(
-            '-m',
-            '--manifest_file',
-            type = str,
-            required=True)
-    
-    parser.add_argument(
-            '-c', 
-            '--synapse_config_file', 
-            type = str, 
-            required=True)   
+	if __name__ == '__main__':
 
-    args = parser.parse_args()
+	    parser = argparse.ArgumentParser("Stores files in Synapse")
 
-    syn = synapseclient.Synapse(configPath=args.synapse_config_file)
-    syn.login()
+	    parser.add_argument(
+		    '-m',
+		    '--manifest_file',
+		    type = str,
+		    required=True)
+	    
+	    parser.add_argument(
+		    '-c', 
+		    '--synapse_config_file', 
+		    type = str, 
+		    required=True)   
 
-    synapseutils.sync.syncToSynapse(syn, args.manifest_file)
+	    args = parser.parse_args()
 
-```
+	    syn = synapseclient.Synapse(configPath=args.synapse_config_file)
+	    syn.login()
+
+	    synapseutils.sync.syncToSynapse(syn, args.manifest_file)
+
+
 And here is the CWL tool that calls it:
 
 .. code-block:: YAML
