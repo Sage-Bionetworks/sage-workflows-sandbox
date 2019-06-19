@@ -176,7 +176,9 @@ You can use the dotproduct as long as the arrays are the same length. The length
 This is very similar to the first example, let's look at what's changed.
 
 We are still iterating over an array of input files, but here we want to also control whether or not we use the lines flag or not, so we are now providing an array of booleans:
+
 .. code-block:: YAML
+
 	inputs:
 
 	  line_array: boolean[]
@@ -185,6 +187,7 @@ We are still iterating over an array of input files, but here we want to also co
 We now need to scatter two array inputs:
 
 .. code-block:: YAML
+
 	    scatter: 
 	      - lines
 	      - file
@@ -194,6 +197,7 @@ Finally since we are scattering more than one array we need to provide the metho
 
 
 .. code-block:: YAML
+
  	   scatterMethod: dotproduct
 
 
@@ -208,6 +212,7 @@ In part 1 we covered how to do a sample scatter on an array of files. In part 2 
 Another way of describing this is that the cwltool is run on every combination of inputs from each array. For example if you have an array of 3 files, and array of 2 flags, you will have 6 outputs. Each file will be run, once per each flag. The example workflow is exactly the same as the one in part2 except:
  
 .. code-block:: YAML
+
    	 scatterMethod: flat_crossproduct
 
 
@@ -215,6 +220,7 @@ And  the input yaml:
 
 
 .. code-block:: YAML
+
 	line_array:
 	- true
 	- false
@@ -231,6 +237,7 @@ And  the input yaml:
 And finally the output of "cwltool wc_workflow3.cwl wc_workflow.yaml" :
 
 .. code-block:: JSON
+
 	{
 	    "output_array": [
 		{
@@ -292,6 +299,7 @@ This is very similar to flat_crossproduct. The difference is that instead of one
 
 
 .. code-block:: YAML
+
 	#!/usr/bin/env cwl-runner
 	#
 	# Authors: Andrew Lamb
@@ -339,6 +347,7 @@ The output will look like:
 
 
 .. code-block:: JSON
+
 	[workflow ] completed success
 	{
 	    "output_array": [
