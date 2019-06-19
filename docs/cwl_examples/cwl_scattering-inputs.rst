@@ -81,13 +81,17 @@ The way to run a tool on an array of inputs is to do it at the workflow level:
 Let's go through the relevant parts.
 
 This is necessary for using the scatter functionality:
+
 .. code-block:: YAML
+
 	requirements:
 	- class: ScatterFeatureRequirement
 
 
 We want to run the tool on a list of input files. This is indicated by placing square brackets after the type:
+
 .. code-block:: YAML
+
 	inputs:
 
 	  lines: boolean?tep
@@ -96,6 +100,7 @@ We want to run the tool on a list of input files. This is indicated by placing s
 We will get back an array of files. Note that the scatter step will always result in an array output of whatever type the you are scattering produces. For example if the tool produces a File, the scattered version will produce and array of files. If the tool produces an array, the scattered version produces an array of arrays. This is true if the output of the step is the final workflow output, as in the above example, or it's being fed into another step. 
 
 .. code-block:: YAML
+
 	outputs:
 
 	  output_array: 
@@ -109,6 +114,7 @@ In this example we want to run the wc.cwl tool over multiple files. The tool onl
 the array input named 'file_array'. If we gave the tool the array input here, normally this would cause an error since a file array is not the same as a file:
 
 .. code-block:: YAML
+
 	    in:
 	      lines: lines
 	      file: file_array
@@ -118,6 +124,7 @@ However by adding the scatter definition, we are telling the workflow to iterate
 
 
 .. code-block:: YAML
+
  	   scatter: file
 
 
@@ -135,6 +142,7 @@ You can use the dotproduct as long as the arrays are the same length. The length
 
 
 .. code-block:: YAML
+
 	#!/usr/bin/env cwl-runner
 	#
 	# Authors: Andrew Lamb
@@ -348,7 +356,6 @@ The output will look like:
 
 .. code-block:: JSON
 
-	[workflow ] completed success
 	{
 	    "output_array": [
 		[
@@ -405,7 +412,7 @@ The output will look like:
 		]
 	    ]
 	}
-	Final process status is success
+
 
 
 
