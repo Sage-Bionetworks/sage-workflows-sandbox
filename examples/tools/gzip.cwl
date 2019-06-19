@@ -7,6 +7,7 @@ s:author:
   - class: s:Person
     s:identifier: https://orcid.org/0000-0002-0326-7494
     s:email: andrew.lamb@sagebase.org
+
 s:name: Andrew Lamb
 
 cwlVersion: v1.0
