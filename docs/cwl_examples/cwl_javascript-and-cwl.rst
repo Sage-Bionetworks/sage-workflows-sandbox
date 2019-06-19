@@ -61,8 +61,8 @@ But we can figure it out using a little bit of javascript:
 	  outputBinding:
 	    glob: $(inputs.file.path + ".gz")
 
-1. inputs.file.path returns the path of the input file
-2. + ".gz" concatenates the gz suffix
+1. Inputs.file.path returns the path of the input file
+2. '+ ".gz"' concatenates the gz suffix
 3. $() returns the result of the javscript expression contained between the parens
 
 
