@@ -61,7 +61,9 @@ outputs:
 - id: id_array
   type:
       type: array
-      items: string
+      items:
+         type: array
+         items: string
   outputBinding:
     glob: cwl.json
     loadContents: true
