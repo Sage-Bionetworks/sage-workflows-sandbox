@@ -60,8 +60,6 @@ outputs:
 
 - id: id_array
   type:
-    type: array
-    items:
       type: array
       items: string
   outputBinding:
