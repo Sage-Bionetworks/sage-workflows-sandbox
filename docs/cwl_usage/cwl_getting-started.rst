@@ -129,11 +129,49 @@ This could be done using the command line as follows:
 
 CWL tools can also be run at the command line, though are obviously a bit more cumbersome because that is not their primary use case:
 ::code-block::BASH
-   cwl-runner https://raw.githubusercontent.com/Sage-Bionetworks/synapse-client-cwl-tools/master/synapse-get-tool.cwl --synapsid syn123456 --synapse_config /path/to/my/.synapseConfig
+   cwl-runner https://raw.githubusercontent.com/Sage-Bionetworks/synapse-client-cwl-tools/master/synapse-get-tool.cwl --synapseid syn123456 --synapse_config /path/to/my/.synapseConfig
    cwl-runner mv-tool.cwl --from file1.txt --to file2.txt
    cwl-runner https://raw.githubusercontent.com/Sage-Bionetworks/synapse-client-cwl-tools/master/synapse-store-tool.cwl --file_to_store file2.txt --synapse_config /path/to/my/.synapseConfig --parentid syn234567
    
 Of course ideally you'd build this into a workflow step as follows:
+::code-block::YAML
+    cwlVersion: v1.0
+    class: Workflow
+    inputs:
+      synapseId: File
+      newName: string
+      synapseConfig: File
+      parentId: string
+    outputs:
+       []
+    steps:
+      get-file:
+        run: https://raw.githubusercontent.com/Sage-Bionetworks/synapse-client-cwl-tools/master/synapse-get-tool.cwl 
+        in: 
+            synapseid: synapseId
+            synapse_config: synapseConfig
+        out:
+            [filepath]
+      rename-file:
+        run: mv.cwl
+        in:
+            from: get=file/filepath
+            to: newName
+        out:
+            [newFile]
+      store-file:
+        run: https://raw.githubusercontent.com/Sage-Bionetworks/synapse-client-cwl-tools/master/synapse-store-tool.cwl 
+        in:
+            file_to_store: rename-file/newFile
+            synapse_config: synapseConfig
+            parent_id: parentId
+        out:
+            []
+           
+This is only a subset of the capabilities of the Synapse client. There are other commands that are available that can be built into a CWL tool or even more through the Python client. However, by adding these steps into your workflow you enable the ability to store intermediate analyses and files.
 
 Other resources
 ================
+
+There are many other resources. 
+**TODO: add more resources**
