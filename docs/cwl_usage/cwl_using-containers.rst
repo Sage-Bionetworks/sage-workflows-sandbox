@@ -7,18 +7,19 @@ Using Containers
 What is Docker: 
 =================
 Docker is an open-source project developed with the goal of saving applications from failing to run due to 
-* Missing other applications that the final application depends on (dependencies)
-* Presence of conflicting dependencies
-* Presence of different platforms for running the application
+    * Missing other applications that the final application depends on (dependencies)
+    * Presence of conflicting dependencies
+    * Presence of different platforms for running the application
 
-Docker helps isolate the application from the host it is running on and run it efficiently due to the following:
-1. Linux Containers and LXC : constitute the core of Docker, uses kernel-level namespaces to isolate the container from the host. (_Namespaces are used to organize code into logical groups and to prevent name collisions that can occur especially when your code base includes multiple libraries._)
-2. ControlGroups or cgroups : implement resource accounting and limiting
-3. Advanced Multi-Layered Unification Filesystem or AuFS : enables using images as the basis for containers (eg. using CentOS image for many different containers), also enables version control (each new version is diff of changes from the previous version, thus conserving memory)
+Docker helps isolate applications from the their hosts and run them efficiently by virtue of the following:
+    1. Linux Containers and LXC : constitute the core of Docker, uses kernel-level namespaces to isolate the container from the host. *(Namespaces are used to organize code into logical groups and to prevent name collisions that can occur especially when your code base includes multiple libraries.)*
+    2. ControlGroups or cgroups : implement resource accounting and limiting
+    3. Advanced Multi-Layered Unification Filesystem or AuFS : enables using images as the basis for containers (eg. using CentOS image for many different containers), also enables version control (each new version is diff of changes from the previous version, thus conserving memory)
 
 Docker images store all the information about the necessary packages that an application depends on. These images can be registered in a Docker Registry (eg. DockerHub) and can be easily shared and reused. Many instances can use the same Docker image, each such instance is called a Container.
 
 Synapse hosts a private docker registry, freely available to the members and users of Sage Bionetworks. This allow users to create software on a per project basis which can be easily shared across Synapse. You can make your custom Docker image and push it to Synapse Docker registry using the following command
+    
 ``docker login -u <synapse username> -p <synapse password> docker.synapse.org`` 
 
 Why use Docker Images  with CWL:
@@ -37,49 +38,50 @@ You can follow the example below to write your own CWL runner. Make sure to spec
 
 **EXAMPLE: hello-world.cwl**
 
-``#!/usr/bin/env cwl-runner
+.. code-block:: cwl
+    #!/usr/bin/env cwl-runner
 
-class: CommandLineTool
-id: "hello-world"
-label: "Simple hello world tool"
+        class: CommandLineTool
+        id: "hello-world"
+        label: "Simple hello world tool"
 
-cwlVersion: v1.0
+        cwlVersion: v1.0
 
-$namespaces:
-  dct: http://purl.org/dc/terms/
-  foaf: http://xmlns.com/foaf/0.1/
+        $namespaces:
+            dct: http://purl.org/dc/terms/
+            foaf: http://xmlns.com/foaf/0.1/
 
-dct:creator:
-  "@id": "http://orcid.org/0000-0001-XXXX-XXXX"
-  foaf:name: JohnSmith
-  foaf:mbox: "mailto:johnsmith@gmail.com"
+    dct:creator:
+         "@id": "http://orcid.org/0000-0001-XXXX-XXXX"
+         foaf:name: JohnSmith
+         foaf:mbox: "mailto:johnsmith@gmail.com"
 
-requirements:
-- class: DockerRequirement
-  dockerPull: quay.io/ga4gh-dream/dockstore-tool-helloworld:1.0.2
+    requirements:
+        - class: DockerRequirement
+            dockerPull: quay.io/ga4gh-dream/dockstore-tool-helloworld:1.0.2
 
-inputs:
-  input_file:
-    type: File
-    inputBinding:
-      position: 1
+    inputs:
+        input_file:
+            type: File
+            inputBinding:
+               position: 1
 
-outputs:
-  output:
-    type: File
-    outputBinding:
-      glob: "helloworld.txt"
+    outputs:
+        output:
+            type: File
+            outputBinding:
+                glob: "helloworld.txt"
 
-baseCommand: ["bash", "/usr/local/bin/input.txt"]``
+     baseCommand: ["bash", "/usr/local/bin/input.txt"]
 
 **USAGE**
 
 ``$ cwl-runner hello-world.cwl input.txt``
 
 In the example above:
-* Docker Container == quay.io/ga4gh-dream/dockstore-tool-helloworld:1.0.2 
-* Input == Job to be ran using the dockerfile ==  ``input.txt``
-* Output == the file in ``glob``  will be copied out of the container to a location you specify in your parameter JSON file 
-* Actual command that will be executed == ``baseCommand:``
+    * Docker Container == quay.io/ga4gh-dream/dockstore-tool-helloworld:1.0.2 
+    * Input == Job to be ran using the dockerfile ==  ``input.txt``
+    * Output == the file in ``glob``  will be copied out of the container to a location you specify in your parameter JSON file 
+    * Actual command that will be executed == ``baseCommand:``
 
 
