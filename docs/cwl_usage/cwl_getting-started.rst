@@ -52,7 +52,7 @@ Of course this only scratches the surface of a CWL tool. There are other optiona
 Optional Elements
 ******************
 In addition to the five required elements, there are many optional elements.
-[Not even sure i know what they all are]
+**TODO: fill in optional elements**
 
 
 Building a CWL workflow
@@ -94,10 +94,46 @@ Again, borrowing from the CWL Guide, we have a handy example [here]():
 
 
 While most of these are similar to those of the command line tools they are formatted slightly different with different options within.
+**TODO: fill out differences***
 
 Working with Synapse
 =====================
+At Sage we have developed a suite of CWL-based tools for interacting with the Synapse command line client. These can be found [here]() and describe the basic functionalities of the Synapse Command line client.
 
+
+Once you have this file in your directory, you can pass it in to any of the available synapse commands 
+
+Synapse Config
+**************
+For any workflow that includes Synapse command tools you will need to include a `.synapseConfig` file. This is a file that provides authentication guidance to whatever commands you run. If you are planning to run the client inside a container you should be 
+
+Here is a basic `.synapseConfig` file:
+::code-block::YAML
+    [authentication]
+    username: fakeUser
+    password: myfakePassword
+    
+Examples of using Synapse
+**************************
+
+Some of the most common activities involving the synapse client are `get` and `store`. We have built CWL tools for both of these command available on the [Synapse CWL repo](https://github.com/Sage-Bionetworks/synapse-client-cwl-tools).
+
+For example, say you wanted to execute a set of commands that gets a synapse file, renames it, then stores it.
+
+This could be done using the command line as follows:
+
+::code-block::BASH
+   synapse get syn123456
+   mv file1.txt file2.txt
+   synapse store file2.txt --parent syn234567
+
+CWL tools can also be run at the command line, though are obviously a bit more cumbersome because that is not their primary use case:
+::code-block::BASH
+   cwl-runner https://raw.githubusercontent.com/Sage-Bionetworks/synapse-client-cwl-tools/master/synapse-get-tool.cwl --synapsid syn123456 --synapse_config /path/to/my/.synapseConfig
+   cwl-runner mv-tool.cwl --from file1.txt --to file2.txt
+   cwl-runner https://raw.githubusercontent.com/Sage-Bionetworks/synapse-client-cwl-tools/master/synapse-store-tool.cwl --file_to_store file2.txt --synapse_config /path/to/my/.synapseConfig --parentid syn234567
+   
+Of course ideally you'd build this into a workflow step as follows:
 
 Other resources
 ================
