@@ -21,15 +21,16 @@ Building a CWL tool
 -------------------
 There are many existing examples of CWL tools out there. 
 
-### Required elements
+Required elements
+*****************
+The following elements are required of a CWL tool:
 - A `cwlVersion`: the version of CWL to use
-- a `class`: CommandLineTool or ExpressionTool
-- a `baseCommand`: the command to be executed
+- A `class`: CommandLineTool or ExpressionTool
+- A `baseCommand`: the command to be executed
 - `inputs`: the inputs being passed into the command
 - `outputs`: the outputs being passed out.
 
-Borrowing an example from the [CWL Docs](https://github.com/common-workflow-language/common-workflow-language/blob/master/v1.0/examples/1st-tool.cwl):
-```
+Borrowing an example from the [CWL Docs](https://github.com/common-workflow-language/common-workflow-language/blob/master/v1.0/examples/1st-tool.cwl)::
 cwlVersion: v1.0
 class: CommandLineTool
 baseCommand: echo
@@ -39,17 +40,30 @@ inputs:
     inputBinding:
       position: 1
 outputs: []
-```
-### Optional Elements
+
+Of course this only scratches the surface of a CWL tool. There are other option elements below.
+
+
+Optional Elements
+******************
 In addition to the five required elements, there are many optional elements.
+[Not even sure i know what they all are]
+
 
 Building a CWL workflow
-----------------------
+=======================
+Once you have a series of tools created it is handy to *glue* them together into a single workflow. A workflow has a slightly different set of required features:
+- A `cwlVersion`: the version of CWL implemented
+- A `class`: will always be `Workflow`
+- `inputs`: 
+- `outputs`:
+- `steps`:
 
+While most of these are similar to those of the command line tools they are formatted slightly different with different options within.
 
 Working with Synapse
----------------------
+=====================
 
 
 Other resources
--------------------
+================
