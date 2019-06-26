@@ -30,18 +30,23 @@ The following elements are required of a CWL tool:
 - `inputs`: the inputs being passed into the command
 - `outputs`: the outputs being passed out.
 
-Borrowing an example from the [CWL Docs](https://github.com/common-workflow-language/common-workflow-language/blob/master/v1.0/examples/1st-tool.cwl)::
-cwlVersion: v1.0
-class: CommandLineTool
-baseCommand: echo
-inputs:
-  message:
-    type: string
-    inputBinding:
-      position: 1
-outputs: []
+Borrowing an example from the [CWL Docs](https://github.com/common-workflow-language/common-workflow-language/blob/master/v1.0/examples/1st-tool.cwl)
 
-Of course this only scratches the surface of a CWL tool. There are other option elements below.
+.. code-block:: YAML
+
+    cwlVersion: v1.0
+    class: CommandLineTool
+    baseCommand: echo
+    inputs:
+      message:
+        type: string
+        inputBinding:
+          position: 1
+    outputs: []
+
+::
+
+Of course this only scratches the surface of a CWL tool. There are other optional elements below.
 
 
 Optional Elements
@@ -58,6 +63,35 @@ Once you have a series of tools created it is handy to *glue* them together into
 - `inputs`: 
 - `outputs`:
 - `steps`:
+
+Again, borrowing from the CWL Guide, we have a handy example [here]():
+
+.. code-block::YAML
+    cwlVersion: v1.0
+    class: Workflow
+    inputs:
+      inp: File
+      ex: string
+
+    outputs:
+      classout:
+        type: File
+        outputSource: compile/classfile
+
+    steps:
+      untar:
+        run: tar-param.cwl
+        in:
+          tarfile: inp
+          extractfile: ex
+        out: [example_out]
+
+      compile:
+        run: arguments.cwl
+        in:
+          src: untar/example_out
+        out: [classfile]
+
 
 While most of these are similar to those of the command line tools they are formatted slightly different with different options within.
 
