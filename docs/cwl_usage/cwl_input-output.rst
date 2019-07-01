@@ -15,9 +15,65 @@ and an array of output files with the id *indices* can be produced:
         outputs:
         - id: indices
           type: File[]
+          
+To run your workflow, you will need to provide all necessary inputs in a separate YAML or JSON input file:
+
+.. code-block:: YAML
+
+        genome:
+          class: File
+          path: human_genome.txt
+
+or
+
+..code-block:: json
+
+     {
+         "genome": {
+             "class": "File",
+             "path": "human_genome.txt"}
+     {
+
 
 **Input Binding: Command Line Tool Arguments**
 
+The syntax for providing input arguments for command line software tools often varies.  CWL allows this flexibility through the ``inputBinding`` field.  For example, let's pretend you have a software tool with a function called *GenomeAnalyzer*, and you want to run the following command:
+
+.. code-block:: bash
+
+        GenomeAnalyzer --inputgenome=test.fa --annotation=test.gtf  --method=robust
+        
+You can use the base command *GenomeAnalyzer*, and specify the ``inputBinding`` field in your CWL code:
+
+.. code-block:: YAML
+        baseCommand: GenomeAnalyzer
+        inputs:
+            genomefile:
+              type: File
+              inputBinding:
+                position: 1
+                prefix: --inputgenome=
+                separate: false
+            annotationfile:
+              type: File
+              inputBinding: 
+                position: 2
+                prefix: --annotation=
+                separate: false
+            analysismethod:
+              type: string
+                inputBinding:
+                  position: 3
+                  prefix: --method=
+                  separate: false
+                
+                
+In the above example, position numbers are provided to specify the order of the arguments provided to the software tool.  If the order does not matter, you can remove the position field.
+
+                
+                
+                
+**Setting Default Inputs**
 
 **Passing input and output parameters through workflows**
 
