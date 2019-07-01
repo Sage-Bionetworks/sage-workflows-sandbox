@@ -26,7 +26,7 @@ To run your workflow, you will need to provide all necessary inputs in a separat
 
 or
 
-..code-block:: json
+.. code-block:: JSON
 
      {
          "genome": {
