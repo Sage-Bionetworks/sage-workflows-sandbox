@@ -46,6 +46,7 @@ The syntax for providing input arguments for command line software tools often v
 You can use the base command *GenomeAnalyzer*, and specify the ``inputBinding`` field in your CWL code:
 
 .. code-block:: YAML
+
         baseCommand: GenomeAnalyzer
         inputs:
             genomefile:
