@@ -42,6 +42,8 @@ outputs:
       glob: "*/quant.sf"
       outputEval: |
         ${
-          self[0].basename = inputs.output.replace(" ","_") + '_quant.sf';
+          var io=inputs.output
+          io=io.replace(" ","_")
+          self[0].basename = io + '_quant.sf';
           return self[0]
         }
