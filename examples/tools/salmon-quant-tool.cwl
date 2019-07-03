@@ -9,7 +9,7 @@ baseCommand: [salmon, quant, -l, A, --validateMappings, --gcBias, --seqBias]
 hints:
   DockerRequirement:
     dockerPull: combinelab/salmon
-    
+
 requirements:
   - class: InlineJavascriptRequirement
 
@@ -42,6 +42,6 @@ outputs:
       glob: "*/quant.sf"
       outputEval: |
         ${
-          self[0].basename = inputs.output + '_quant.sf';
+          self[0].basename = inputs.output.replace(" ","_") + '_quant.sf';
           return self[0]
         }
